@@ -1,12 +1,14 @@
 import { cookiesClient } from '@/utils/amplifyUtils'
 import Link from 'next/link'
 import React from 'react'
+import { NavbarPrivate } from '../components/NavbarPrivate'
 
 async function WordSearchList() {
-	const { data: wordsearches } = await cookiesClient.models.WordSearch.list()
-	console.log(wordsearches)
+	let { data: wordsearches } = await cookiesClient.models.WordSearch.list()
+
 	return (
 		<main>
+			<NavbarPrivate />
 			<h1>WordSearchList</h1>
 			<section>
 				{wordsearches.map((wordsearch) => (

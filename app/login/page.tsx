@@ -6,37 +6,36 @@ import {
 	View,
 	useAuthenticator,
 } from '@aws-amplify/ui-react'
-import { redirect } from 'next/navigation'
+import { redirect, useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
-
-const components = {
-	Header() {
-		return (
-			<View textAlign="center">
-				<Text>
-					<span style={{ color: 'white' }}>Authenticator Header</span>
-				</Text>
-			</View>
-		)
-	},
-}
+import { NavbarPublic } from '../components/NavbarPublic'
+import { useRouter } from 'next/router'
 
 function CustomAuthenticator() {
 	const { user } = useAuthenticator((context) => [context.user])
+	const searchParams = useSearchParams()
 
 	useEffect(() => {
 		if (user) {
-			redirect('/wordsearch-list')
+			const redirectTo = searchParams.get('redirectTo')
+			if (redirectTo) {
+				redirect(redirectTo)
+			} else {
+				redirect('/wordsearch-list')
+			}
 		}
-	}, [user])
+	}, [user, searchParams])
 
-	return <Authenticator components={components} />
+	return <Authenticator />
 }
 
 export default function Login() {
 	return (
-		<Authenticator.Provider>
-			<CustomAuthenticator />
-		</Authenticator.Provider>
+		<>
+			<NavbarPublic />
+			<Authenticator.Provider>
+				<CustomAuthenticator />
+			</Authenticator.Provider>
+		</>
 	)
 }

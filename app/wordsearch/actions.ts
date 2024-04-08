@@ -2,10 +2,10 @@
 
 import { cookiesClient } from '@/utils/amplifyUtils'
 
-export const generateWordsFromBedrock = async () => {
+export const generateWordsFromBedrock = async (theme: string) => {
 	const { data, errors } =
 		await cookiesClient.mutations.generateWordSearchWords({
-			theme: 'a bird in a cage',
+			theme: theme,
 		})
 
 	return data
@@ -18,9 +18,10 @@ export type saveWordsearchProps = {
 }
 
 export const saveWordsearch = async (wordsearchInput: saveWordsearchProps) => {
-	const { data, errors } = await cookiesClient.models.WordSearch.create({
-		...wordsearchInput,
-	})
+	console.log('the deets', wordsearchInput)
+	// const { data, errors } = await cookiesClient.models.WordSearch.create({
+	// 	...wordsearchInput,
+	// })
 
-	return data
+	// return data
 }

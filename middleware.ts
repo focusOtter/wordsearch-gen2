@@ -12,17 +12,18 @@ export async function middleware(request: NextRequest) {
 				const session = await fetchAuthSession(contextSpec, {})
 				return session.tokens !== undefined
 			} catch (error) {
-				console.log(error)
-				return false
+				console.log('there was an error', error)
 			}
 		},
 	})
 
-	if (authenticated) {
+	if (authenticated || request.nextUrl.pathname === '/') {
 		return response
 	}
 
-	return NextResponse.redirect(new URL('/login', request.url))
+	return NextResponse.redirect(
+		new URL(`/login?redirectTo=${request.nextUrl.pathname}`, request.url)
+	)
 }
 
 export const config = {
