@@ -1,15 +1,9 @@
 'use client'
 
-import {
-	Authenticator,
-	Text,
-	View,
-	useAuthenticator,
-} from '@aws-amplify/ui-react'
+import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react'
 import { redirect, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { NavbarPublic } from '../components/NavbarPublic'
-import { useRouter } from 'next/router'
 
 function CustomAuthenticator() {
 	const { user } = useAuthenticator((context) => [context.user])
@@ -34,7 +28,9 @@ export default function Login() {
 		<>
 			<NavbarPublic />
 			<Authenticator.Provider>
-				<CustomAuthenticator />
+				<Suspense>
+					<CustomAuthenticator />
+				</Suspense>
 			</Authenticator.Provider>
 		</>
 	)

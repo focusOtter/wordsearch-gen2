@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import WordSearch from '@blex41/word-search'
 import clsx from 'clsx'
 
@@ -89,7 +89,6 @@ function WordSearchApp() {
 
 	return (
 		<>
-			<NavbarPrivate />
 			<div className="p-4 md:p-8  min-h-screen">
 				{/* Init form creation */}
 				<div className="max-w-xl mx-auto">
@@ -224,5 +223,14 @@ function WordSearchApp() {
 		</>
 	)
 }
-
-export default WordSearchApp
+const SuspendedWordsearchPage = () => {
+	return (
+		<>
+			<NavbarPrivate />
+			<Suspense>
+				<WordSearchApp />
+			</Suspense>
+		</>
+	)
+}
+export default SuspendedWordsearchPage
