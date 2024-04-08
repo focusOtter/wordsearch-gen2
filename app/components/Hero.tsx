@@ -1,27 +1,40 @@
 import Link from 'next/link'
+import herobg from '@/public/herobg.png'
+import Image from 'next/image'
 
 function Hero() {
 	return (
 		<>
-			<div
-				className="hero min-h-screen"
-				style={{
-					backgroundImage:
-						'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)',
-				}}
-			>
+			<div className="hero min-h-screen">
+				<Image
+					alt="fractals"
+					src={herobg}
+					placeholder="blur"
+					quality={100}
+					fill
+					sizes="90vw"
+					style={{
+						objectFit: 'cover',
+						filter: 'blur(0px)',
+					}}
+				/>
 				<div className="hero-overlay bg-opacity-60"></div>
 				<div className="hero-content text-center text-neutral-content">
 					<div className="max-w-md">
-						<h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-						<p className="mb-5">
-							Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-							excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-							et a id nisi.
-						</p>
-						<Link href="/wordsearch" className="btn btn-primary">
-							Create a wordsearch
-						</Link>
+						<div className="card w-96 glass">
+							<div className="card-body">
+								<h2 className="card-title mb-5 text-4xl font-bold text-center">
+									WordFinder AI
+								</h2>
+								<p className="mb-5">
+									An app for my beautiful wife, but with the help of NextJS and
+									AWS Amplify, it&apos;s now available to all of you!
+								</p>
+								<Link href="/wordsearch" className="btn btn-success">
+									Create a wordsearch
+								</Link>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

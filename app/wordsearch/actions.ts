@@ -1,6 +1,7 @@
 'use server'
 
 import { cookiesClient } from '@/utils/amplifyUtils'
+import { revalidatePath } from 'next/cache'
 
 export const generateWordsFromBedrock = async (theme: string) => {
 	const { data, errors } =
@@ -11,6 +12,7 @@ export const generateWordsFromBedrock = async (theme: string) => {
 	return data
 }
 export type saveWordsearchProps = {
+	id?: string
 	columns: number
 	rows: number
 	name: string
@@ -19,9 +21,35 @@ export type saveWordsearchProps = {
 
 export const saveWordsearch = async (wordsearchInput: saveWordsearchProps) => {
 	console.log('the deets', wordsearchInput)
-	// const { data, errors } = await cookiesClient.models.WordSearch.create({
-	// 	...wordsearchInput,
-	// })
+	if (!wordsearchInput.id) {
+		const { data, errors } = await cookiesClient.models.WordSearch.create({
+			...wordsearchInput,
+		})
+	} else {
+		const { data, errors } = await cookiesClient.models.WordSearch.update({
+			id: wordsearchInput.id,
+			...wordsearchInput,
+		})
+	}
+	return
+}
 
-	// return data
+export const fetchWordsearch = async (wordsearchId: string) => {
+	const data = await cookiesClient.models.WordSearch.get({
+		id: wordsearchId,
+	})
+
+	return data
+}
+
+export const deleteWordsearch = async (formdata: FormData) => {
+	const wordsearchId = formdata.get('wordsearchId') as string
+
+	console.log('clikced')
+	const data = await cookiesClient.models.WordSearch.delete({
+		id: wordsearchId,
+	})
+	console.log('the data', data)
+
+	revalidatePath('/wordsearch')
 }

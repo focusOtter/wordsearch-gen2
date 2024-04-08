@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import SignOutButton from './SignOutButton'
 
-export async function NavbarPrivate() {
+export function NavbarPrivate() {
 	return (
 		<div className="navbar bg-base-100">
 			<div className="flex-1">

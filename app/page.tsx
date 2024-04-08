@@ -28,7 +28,6 @@ const cardDetails = [
 function HomePage() {
 	return (
 		<main>
-			<NavbarPublic />
 			<Hero />
 			<article className="flex flex-wrap justify-around my-10 gap-10">
 				{cardDetails.map((card) => (

@@ -1,22 +1,47 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import WordSearch from '@blex41/word-search'
 import clsx from 'clsx'
 
 import { extractAndFormatArray } from '@/utils/api'
-import { generateWordsFromBedrock, saveWordsearch } from './actions'
+import {
+	fetchWordsearch,
+	generateWordsFromBedrock,
+	saveWordsearch,
+} from './actions'
 import { NavbarPrivate } from '../components/NavbarPrivate'
+import { useSearchParams } from 'next/navigation'
 
 function WordSearchApp() {
 	const [cols, setCols] = useState(6)
 	const [rows, setRows] = useState(6)
 	const [words, setWords] = useState('')
-	const [wordBank, setWordBank] = useState<[] | string[]>([])
+
 	const [wordTheme, setWordTheme] = useState('')
 	const [isDisabled, setIsDisabled] = useState(false)
 	const [buttonText, setButtonText] = useState('Generate Words')
+	const [currWordSearchId, setWordSearchId] = useState<undefined | string>()
 
 	const [grid, setGrid] = useState([])
+
+	const searchParams = useSearchParams()
+	useEffect(() => {
+		const wordsearchId = searchParams.get('id')
+		wordsearchId ? setWordSearchId(wordsearchId) : setWordSearchId(undefined)
+		console.log(wordsearchId)
+		if (wordsearchId) {
+			//redirect to the wordsearch page
+			fetchWordsearch(wordsearchId).then(({ data }) => {
+				console.log(data)
+				setCols(data.columns)
+				setRows(data.rows)
+				setWords(data.wordBank.join(','))
+				setWordTheme(data.name)
+
+				return
+			})
+		}
+	}, [searchParams])
 
 	const handleGenerate = () => {
 		const dictionary = words.split(',').map((word) => word.trim())
@@ -37,7 +62,6 @@ function WordSearchApp() {
 			(word: { clean: Boolean }) => word.clean
 		)
 		setGrid(ws.data.grid)
-		setWordBank(pickedWords)
 	}
 
 	const handleThemeGenerationButtonClick = async (theme: string) => {
@@ -48,6 +72,18 @@ function WordSearchApp() {
 		const wordsArr = extractAndFormatArray(data)
 		setButtonText('Generate Words')
 		setWords(wordsArr.toString())
+
+		console.log(data)
+	}
+
+	const handleWordsearchSave = async () => {
+		const data = await saveWordsearch({
+			id: currWordSearchId,
+			columns: cols,
+			rows,
+			name: wordTheme,
+			wordBank: words.split(','),
+		})
 		console.log(data)
 	}
 
@@ -131,15 +167,7 @@ function WordSearchApp() {
 							</button>
 
 							<button
-								onClick={async () => {
-									const data = await saveWordsearch({
-										columns: cols,
-										rows,
-										name: wordTheme,
-										wordBank,
-									})
-									console.log(data)
-								}}
+								onClick={handleWordsearchSave}
 								className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
 							>
 								Save Grid Details
@@ -171,7 +199,7 @@ function WordSearchApp() {
 					<div className="mt-6">
 						<h2 className="text-xl font-semibold mb-4 ">Word Bank:</h2>
 						<div className="flex flex-wrap">
-							{wordBank.map((word, index) => (
+							{words.split(',').map((word, index) => (
 								<span
 									key={index}
 									className="m-1 p-2 bg-white rounded shadow text-black "
