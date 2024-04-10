@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Gen2 Wordsearch
+<img width="1658" alt="image" src="https://github.com/focusOtter/wordsearch-gen2/assets/5106417/3310d9c9-c5f2-4cf7-8c6b-d7a814bd7676">
+
+
+Welcome to Gen2 Wordsearch, a next-generation web app designed to help you create and manage word searches. With the integration of AI, users can not only craft their own puzzles but also generate thematically consistent words to fill their grids. Live link here at [Gen2 Wordsearch](https://main.dhoow7ckft8it.amplifyapp.com/).
+
+## Features
+
+- **Custom Wordsearch Creation**: Create word searches tailored to your preference.
+- **AI-Powered Word Suggestions**: Input a theme and let our AI suggest words that fit, making your word searches more engaging and relevant.
+- **Intuitive Management**: Easily manage your created word searches, edit, or delete them as needed.
+- **Responsive Design**: Enjoy a seamless experience across all your devices, thanks to a responsive layout powered by Tailwind CSS and DaisyUI.
+- **Cloud-Connected Backend**: Leveraging AWS Amplify Gen2, your data and authentication needs are met with industry-leading technology.
+
+## Technology Stack
+
+- **Frontend**: NextJS with the latest app router for an optimized mix of client-side and server-side rendering.
+- **Styling**: Tailwind CSS with DaisyUI for design and aestetics.
+- **Backend**: AWS Amplify Gen2 for a cloud-connected backend, including data management with AWS AppSync and authentication via Amazon Cognito.
+- **AI Integration**: Custom AI word suggestions powered by Amazon Bedrock, seamlessly integrated via a custom data mutation.
 
 ## Getting Started
 
-First, run the development server:
+To get started with Gen2 Wordsearch, follow these steps:
 
-```bash
+### Prerequisites
+
+Ensure you have the following installed:
+- Node.js (LTS version)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository to your local machine:
+   ```
+   git clone https://github.com/focusOtter/wordsearch-gen2.git
+   ```
+2. Navigate into the project directory:
+   ```
+   cd wordsearch-gen2
+   ```
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+4. Deploy the AWS resources (see [here](https://docs.amplify.aws/gen2/start/account-setup/) if this is your first time using AWS)
+   ```
+   npx amplify sandbox
+   ```
+
+### Running Locally
+
+To run the application locally:
+```
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then, open your browser and navigate to `http://localhost:3000` to see the app in action.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+We welcome contributions! If you encounter an issue or have a feature suggestion, feel free to file an issue. Additionally, if you'd like to contribute a fix or a feature, please submit a Pull Request (PR) with a clear description of the changes.
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Gen2 Wordsearch is open-source software licensed under the MIT License.
