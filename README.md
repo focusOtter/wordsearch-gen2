@@ -14,6 +14,8 @@ Welcome to Gen2 Wordsearch, a next-generation web app designed to help you creat
 
 ## Technology Stack
 
+![arch diagram](./WordSearch-arch.png)
+
 - **Frontend**: NextJS with the latest app router for an optimized mix of client-side and server-side rendering.
 - **Styling**: Tailwind CSS with DaisyUI for design and aestetics.
 - **Backend**: AWS Amplify Gen2 for a cloud-connected backend, including data management with AWS AppSync and authentication via Amazon Cognito.
