@@ -1,6 +1,6 @@
 # Gen2 Wordsearch
-<img width="1658" alt="image" src="https://github.com/focusOtter/wordsearch-gen2/assets/5106417/3310d9c9-c5f2-4cf7-8c6b-d7a814bd7676">
 
+<img width="1658" alt="image" src="https://github.com/focusOtter/wordsearch-gen2/assets/5106417/3310d9c9-c5f2-4cf7-8c6b-d7a814bd7676">
 
 Welcome to Gen2 Wordsearch, a next-generation web app designed to help you create and manage word searches. With the integration of AI, users can not only craft their own puzzles but also generate thematically consistent words to fill their grids. Live link here at [Gen2 Wordsearch](https://main.dhoow7ckft8it.amplifyapp.com/).
 
@@ -19,6 +19,13 @@ Welcome to Gen2 Wordsearch, a next-generation web app designed to help you creat
 - **Backend**: AWS Amplify Gen2 for a cloud-connected backend, including data management with AWS AppSync and authentication via Amazon Cognito.
 - **AI Integration**: Custom AI word suggestions powered by Amazon Bedrock, seamlessly integrated via a custom data mutation.
 
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [AWS Amplify Gen2](https://aws.amazon.com/amplify/)
+- [Amazon Bedrock](https://aws.amazon.com/bedrock/)
+- [DynamoDB](https://aws.amazon.com/dynamodb/)
+- [AWS AppSync](https://aws.amazon.com/appsync/)
+
 ## Getting Started
 
 To get started with Gen2 Wordsearch, follow these steps:
@@ -26,6 +33,7 @@ To get started with Gen2 Wordsearch, follow these steps:
 ### Prerequisites
 
 Ensure you have the following installed:
+
 - Node.js (LTS version)
 - npm or yarn
 
@@ -45,12 +53,13 @@ Ensure you have the following installed:
    ```
 4. Deploy the AWS resources (see [here](https://docs.amplify.aws/gen2/start/account-setup/) if this is your first time using AWS)
    ```
-   npx amplify sandbox
+   npx ampx sandbox
    ```
 
 ### Running Locally
 
 To run the application locally:
+
 ```
 npm run dev
 ```
