@@ -9,12 +9,12 @@ const schema = a.schema({
 			rows: a.integer().required(),
 			wordBank: a.string().array().required(),
 		})
-		.authorization([a.allow.owner()]),
+		.authorization((allow) => [allow.owner()]),
 	generateWordSearchWords: a
 		.mutation()
 		.arguments({ theme: a.string().required() })
 		.returns(a.string().required())
-		.authorization([a.allow.private()])
+		.authorization((allow) => [allow.authenticated()])
 		.handler(
 			a.handler.custom({
 				dataSource: 'BedrockDataSource',

@@ -6,7 +6,7 @@ import { generateServerClientUsingCookies } from '@aws-amplify/adapter-nextjs/ap
 import { getCurrentUser } from 'aws-amplify/auth/server'
 
 import { type Schema } from '@/amplify/data/resource'
-import config from '@/amplifyconfiguration.json'
+import config from '@/amplify_outputs.json'
 
 export const { runWithAmplifyServerContext } = createServerRunner({
 	config,

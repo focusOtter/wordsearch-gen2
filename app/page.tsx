@@ -29,16 +29,6 @@ function HomePage() {
 	return (
 		<main>
 			<Hero />
-			<article className="flex flex-wrap justify-around my-10 gap-10">
-				{cardDetails.map((card) => (
-					<Card
-						key={card.id}
-						title={card.title}
-						description={card.description}
-						bgColor={card.bgColor}
-					/>
-				))}
-			</article>
 		</main>
 	)
 }

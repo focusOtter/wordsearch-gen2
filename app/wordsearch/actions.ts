@@ -20,7 +20,6 @@ export type saveWordsearchProps = {
 }
 
 export const saveWordsearch = async (wordsearchInput: saveWordsearchProps) => {
-	console.log('the deets', wordsearchInput)
 	if (!wordsearchInput.id) {
 		const { data, errors } = await cookiesClient.models.WordSearch.create({
 			...wordsearchInput,
@@ -45,11 +44,9 @@ export const fetchWordsearch = async (wordsearchId: string) => {
 export const deleteWordsearch = async (formdata: FormData) => {
 	const wordsearchId = formdata.get('wordsearchId') as string
 
-	console.log('clikced')
-	const data = await cookiesClient.models.WordSearch.delete({
+	await cookiesClient.models.WordSearch.delete({
 		id: wordsearchId,
 	})
-	console.log('the data', data)
 
 	revalidatePath('/wordsearch')
 }

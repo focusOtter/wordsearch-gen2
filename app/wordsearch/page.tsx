@@ -28,11 +28,10 @@ function WordSearchApp() {
 	useEffect(() => {
 		const wordsearchId = searchParams.get('id')
 		wordsearchId ? setWordSearchId(wordsearchId) : setWordSearchId(undefined)
-		console.log(wordsearchId)
+
 		if (wordsearchId) {
 			//redirect to the wordsearch page
 			fetchWordsearch(wordsearchId).then(({ data }) => {
-				console.log(data)
 				setCols(data.columns)
 				setRows(data.rows)
 				setWords(data.wordBank.join(','))
@@ -68,12 +67,11 @@ function WordSearchApp() {
 		setIsDisabled(true)
 		setButtonText('Generating...')
 		const data = await generateWordsFromBedrock(theme)
+
 		setIsDisabled(false)
 		const wordsArr = extractAndFormatArray(data)
 		setButtonText('Generate Words')
 		setWords(wordsArr.toString())
-
-		console.log(data)
 	}
 
 	const handleWordsearchSave = async () => {
@@ -84,7 +82,6 @@ function WordSearchApp() {
 			name: wordTheme,
 			wordBank: words.split(','),
 		})
-		console.log(data)
 	}
 
 	return (
