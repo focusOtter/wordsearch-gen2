@@ -1,6 +1,6 @@
 # Gen2 Wordsearch
 
-<img width="1658" alt="image" src="https://github.com/focusOtter/wordsearch-gen2/assets/5106417/3310d9c9-c5f2-4cf7-8c6b-d7a814bd7676">
+![img](./public/hero-bg.png)
 
 Welcome to Gen2 Wordsearch, a next-generation web app designed to help you create and manage word searches. With the integration of AI, users can not only craft their own puzzles but also generate thematically consistent words to fill their grids. Live link here at [Gen2 Wordsearch](https://main.dhoow7ckft8it.amplifyapp.com/).
 
