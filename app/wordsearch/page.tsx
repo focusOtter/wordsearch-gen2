@@ -32,10 +32,10 @@ function WordSearchApp() {
 		if (wordsearchId) {
 			//redirect to the wordsearch page
 			fetchWordsearch(wordsearchId).then(({ data }) => {
-				setCols(data.columns)
-				setRows(data.rows)
-				setWords(data.wordBank.join(','))
-				setWordTheme(data.name)
+				setCols(data?.columns!)
+				setRows(data?.rows!)
+				setWords(data?.wordBank.join(',')!)
+				setWordTheme(data?.name!)
 
 				return
 			})
@@ -69,7 +69,7 @@ function WordSearchApp() {
 		const data = await generateWordsFromBedrock(theme)
 
 		setIsDisabled(false)
-		const wordsArr = extractAndFormatArray(data)
+		const wordsArr = extractAndFormatArray(data!)
 		setButtonText('Generate Words')
 		setWords(wordsArr.toString())
 	}
